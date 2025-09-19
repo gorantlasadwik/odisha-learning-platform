@@ -1,0 +1,32 @@
+{
+  "appId": "com.odishalearning.platform",
+  "appName": "Odisha Learning Platform",
+  "webDir": "dist",
+  "bundledWebRuntime": false,
+  "server": {
+    "androidScheme": "https"
+  },
+  "plugins": {
+    "StatusBar": {
+      "style": "DARK",
+      "backgroundColor": "#CC0000"
+    },
+    "SplashScreen": {
+      "launchShowDuration": 2000,
+      "backgroundColor": "#FFD700",
+      "androidSplashResourceName": "splash",
+      "androidScaleType": "CENTER_CROP",
+      "showSpinner": false
+    },
+    "Keyboard": {
+      "resize": "ionic"
+    }
+  },
+  "android": {
+    "allowMixedContent": true,
+    "minWebViewVersion": 60
+  },
+  "ios": {
+    "scheme": "Odisha Learning Platform"
+  }
+}
