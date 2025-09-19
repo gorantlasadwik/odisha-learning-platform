@@ -1,7 +1,6 @@
 # 🏛️ Odisha Learning Platform - Gamified Cultural Education System
 
-<div align="center">
-  <img src="https://via.placeholder.com/600x200/CC0000/FFD700?text=Odisha+Learning+Platform" alt="Odisha Learning Platform Banner" />
+
   
   **A culturally-integrated, offline-first learning platform designed for rural schools in Odisha**
   
