@@ -806,7 +806,7 @@ Optimized for various devices:
 
 ## 🔮 Future Roadmap
 
-### 🎆 **Phase 2: AI Integration (Q2 2024)**
+### 🎆 **Phase 2: AI Integration **
 
 #### **Intelligent Content Generation**
 - **AI Quiz Creation**: 
@@ -827,7 +827,7 @@ Optimized for various devices:
 - **Personalized Learning Paths**: Adaptive content delivery based on cultural preferences
 - **Intelligent Intervention**: Early identification of struggling students
 
-### 📱 **Phase 3: Mobile Platform (Q3 2024)**
+### 📱 **Phase 3: Mobile Platform **
 
 #### **React Native Application**
 - **Native Android App**: Optimized for rural device performance
@@ -841,7 +841,7 @@ Optimized for various devices:
 - **Offline Maps**: Heritage site locations and educational content
 - **Community Features**: Local school competitions and cultural events
 
-### 🌐 **Phase 4: Connected Learning (Q4 2024)**
+### 🌐 **Phase 4: Connected Learning **
 
 #### **Backend Infrastructure**
 - **Node.js/Express API**: Centralized content management
@@ -855,7 +855,7 @@ Optimized for various devices:
 - **Teacher Professional Network**: Best practices sharing platform
 - **Parent Portal**: Progress monitoring with cultural context
 
-### 🎯 **Phase 5: Ecosystem Expansion (2025)**
+### 🎯 **Phase 5: Ecosystem Expansion **
 
 #### **Regional Integration**
 - **State Education Board Integration**: Official curriculum alignment
@@ -966,7 +966,7 @@ Built with ❤️ for rural schools in Odisha, India. This platform represents a
 - **IndexedDB Standards**: For offline-first data persistence
 
 #### **Educational Framework**
-- **CBSE Curriculum**: For structured educational content alignment
+- **SCERT Curriculum**: For structured educational content alignment
 - **Odisha Education Board**: For regional curriculum integration
 - **Rural Education Experts**: For understanding ground-level challenges
 - **Teacher Community**: For practical feedback and feature requests
@@ -974,7 +974,7 @@ Built with ❤️ for rural schools in Odisha, India. This platform represents a
 ### 📜 **License & Usage**
 
 #### **Smart India Hackathon 2024**
-This project is developed for SIH 2024, focusing on:
+This project is developed for SIH 2025, focusing on:
 - **Problem Statement**: Improving rural education through technology
 - **Innovation Focus**: Cultural integration in digital learning
 - **Impact Goal**: 15%+ increase in learning engagement
