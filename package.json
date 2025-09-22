@@ -10,7 +10,8 @@
     "preview": "vite preview --host",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:mobile": "vite build --mode mobile",
-    "serve:mobile": "npm run build && npx serve dist -s -l 3000"
+    "serve:mobile": "npm run build && npx serve dist -s -l 3000",
+    "deploy": "npm run build && npx gh-pages -d dist"
   },
   "keywords": ["education", "learning", "odisha", "cultural", "offline", "responsive", "mobile-web"],
   "author": "Odisha Learning Platform Team",
@@ -31,6 +32,7 @@
     "vite": "^7.1.5"
   },
   "devDependencies": {
-    "serve": "^14.2.1"
+    "serve": "^14.2.1",
+    "gh-pages": "^6.1.1"
   }
 }
