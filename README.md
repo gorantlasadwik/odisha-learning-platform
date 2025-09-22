@@ -1,12 +1,6 @@
 # 🏛️ ShikshaMitra - Odisha Learning Platform
 
->>>>>>> ba5fbe51b7126c9378e6d1727742ada9e52826b6
-# 🏛️ ShikshaMitra - Odisha Learning Platform
-
 <div align="center">
-=======
-
->>>>>>> ba5fbe51b7126c9378e6d1727742ada9e52826b6
   
   **A culturally-integrated, offline-first learning platform for rural schools in Odisha**
   
@@ -17,6 +11,7 @@
   [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.4.17-06B6D4?style=flat&logo=tailwindcss)](https://tailwindcss.com/)
   [![IndexedDB](https://img.shields.io/badge/IndexedDB-Offline%20First-orange?style=flat)](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API)
   [![i18next](https://img.shields.io/badge/i18next-15.7.3-green?style=flat)](https://www.i18next.com/)
+  [![Recharts](https://img.shields.io/badge/Recharts-3.2.0-purple?style=flat)](https://recharts.org/)
 
   ![Live Demo](https://img.shields.io/badge/Live-Demo-success?style=for-the-badge)
   ![Offline Ready](https://img.shields.io/badge/Offline-Ready-orange?style=for-the-badge)
@@ -118,10 +113,10 @@ ShikshaMitra Platform
 ### Installation
 ```bash
 # Clone repository
-git clone https://github.com/your-username/shiksha-mitra-odisha.git
+git clone https://github.com/gorantlasadwik/odisha-learning-platform.git
 
 # Install dependencies
-cd shiksha-mitra-odisha
+cd odisha-learning-platform
 npm install
 
 # Start development server
@@ -163,6 +158,12 @@ npm run dev
 | 🥇 Gold | "Vidya Shree" | Excellence in Education | 85%+ average, 15-day streak |
 | 💎 Diamond | "Guru Ratna" | Precious Teacher | 90%+ average, 30-day streak |
 
+### Badge System Features
+- Knowledge Seeker, Quiz Master, Streak Champion
+- Subject-specific achievements
+- Collaboration and improvement rewards
+- Cultural heritage-inspired designs
+
 ## 🌍 Offline Capabilities
 
 ✅ Complete offline operation  
@@ -193,11 +194,6 @@ npm run dev
 - **Class Insights**: Aggregate statistics and trends
 - **Visual Reports**: Mobile-optimized charts with cultural colors
 
-### Badge System
-- Knowledge Seeker, Quiz Master, Streak Champion
-- Subject-specific achievements
-- Collaboration and improvement rewards
-
 ## 📱 Responsive Design
 
 Optimized for various devices:
@@ -206,89 +202,7 @@ Optimized for various devices:
 - **Mobile**: Touch-friendly interface
 - **Low-end Devices**: Optimized performance and minimal resource usage
 
-## 🔮 Future Roadmap
-
-### 🎆 **Phase 2: AI Integration **
-
-#### **Intelligent Content Generation**
-- **AI Quiz Creation**: 
-  - Groq AI integration for automatic question generation
-  - Cultural context preservation in AI-generated content
-  - Multilingual quiz creation with Odia cultural examples
-  - Adaptive difficulty based on student performance
-
-- **Smart Translation System**:
-  - AI-powered English to Hindi/Odia translation
-  - Cultural context preservation in translations
-  - Traditional terminology integration
-  - Regional dialect adaptation
-
-#### **Advanced Analytics**
-- **ML-Based Learning Insights**: Predictive analytics for student performance
-- **Cultural Engagement Prediction**: AI analysis of heritage content interaction
-- **Personalized Learning Paths**: Adaptive content delivery based on cultural preferences
-- **Intelligent Intervention**: Early identification of struggling students
-
-### 📱 **Phase 3: Mobile Platform **
-
-#### **React Native Application**
-- **Native Android App**: Optimized for rural device performance
-- **Offline-First Mobile**: Enhanced IndexedDB with native storage
-- **Cultural Notifications**: Festival reminders and learning encouragement
-- **Parent Integration**: Family engagement through cultural achievements
-
-#### **Enhanced Mobile Features**
-- **Voice Input**: Odia speech recognition for quiz answers
-- **Augmented Reality**: Cultural site exploration through AR
-- **Offline Maps**: Heritage site locations and educational content
-- **Community Features**: Local school competitions and cultural events
-
-### 🌐 **Phase 4: Connected Learning **
-
-#### **Backend Infrastructure**
-- **Node.js/Express API**: Centralized content management
-- **Real-Time Synchronization**: Multi-device data consistency
-- **Cloud Storage**: Backup and recovery for rural connectivity
-- **Administrative Dashboard**: District-level educational insights
-
-#### **Advanced Collaborative Features**
-- **Live Leaderboards**: Real-time competition across schools
-- **Cultural Project Sharing**: Student heritage research collaboration
-- **Teacher Professional Network**: Best practices sharing platform
-- **Parent Portal**: Progress monitoring with cultural context
-
-### 🎯 **Phase 5: Ecosystem Expansion **
-
-#### **Regional Integration**
-- **State Education Board Integration**: Official curriculum alignment
-- **Government Partnership**: Rural school deployment program
-- **Teacher Training Platform**: Cultural integration methodology
-- **Community Engagement**: Local heritage expert involvement
-
-#### **Advanced Technology Integration**
-- **Blockchain Certificates**: Secure academic credential verification
-- **IoT Classroom Integration**: Smart classroom cultural ambiance
-- **5G Optimization**: Enhanced rural connectivity utilization
-- **Edge Computing**: Local processing for improved performance
-
-### 🌱 **Sustainability & Impact Goals**
-
-#### **Educational Impact Targets**
-- **25% Increase** in learning engagement by 2025
-- **50% Improvement** in cultural knowledge retention
-- **90% Student Satisfaction** with culturally-integrated learning
-- **100+ Rural Schools** actively using the platform
-
-#### **Cultural Preservation Goals**
-- **Digital Heritage Archive**: Comprehensive Odia cultural database
-- **Language Revitalization**: Increased Odia language usage in education
-- **Traditional Knowledge Integration**: Indigenous wisdom in modern curriculum
-- **Community Cultural Engagement**: Family involvement in heritage learning
-
----
-
-## 🛠️ Development
->>>>>>> ba5fbe51b7126c9378e6d1727742ada9e52826b6
+## 🔧 Development
 
 ### Project Structure
 ```
@@ -306,218 +220,7 @@ src/
 npm run dev        # Development server
 npm run build      # Production build
 npm run preview    # Preview build
-```
-### Badge System
-- Knowledge Seeker, Quiz Master, Streak Champion
-- Subject-specific achievements
-- Collaboration and improvement rewards
-
-## 📱 Responsive Design
-
-Optimized for various devices:
-- **Desktop**: Full-featured dashboard view
-- **Tablets**: Responsive grid layouts
-- **Mobile**: Touch-friendly interface
-- **Low-end Devices**: Optimized performance and minimal resource usage
-
-## 🔮 Future Roadmap
-
-### 🎆 **Phase 2: AI Integration **
-
-#### **Intelligent Content Generation**
-- **AI Quiz Creation**: 
-  - Groq AI integration for automatic question generation
-  - Cultural context preservation in AI-generated content
-  - Multilingual quiz creation with Odia cultural examples
-  - Adaptive difficulty based on student performance
-
-- **Smart Translation System**:
-  - AI-powered English to Hindi/Odia translation
-  - Cultural context preservation in translations
-  - Traditional terminology integration
-  - Regional dialect adaptation
-
-#### **Advanced Analytics**
-- **ML-Based Learning Insights**: Predictive analytics for student performance
-- **Cultural Engagement Prediction**: AI analysis of heritage content interaction
-- **Personalized Learning Paths**: Adaptive content delivery based on cultural preferences
-- **Intelligent Intervention**: Early identification of struggling students
-
-### 📱 **Phase 3: Mobile Platform **
-
-#### **React Native Application**
-- **Native Android App**: Optimized for rural device performance
-- **Offline-First Mobile**: Enhanced IndexedDB with native storage
-- **Cultural Notifications**: Festival reminders and learning encouragement
-- **Parent Integration**: Family engagement through cultural achievements
-
-#### **Enhanced Mobile Features**
-- **Voice Input**: Odia speech recognition for quiz answers
-- **Augmented Reality**: Cultural site exploration through AR
-- **Offline Maps**: Heritage site locations and educational content
-- **Community Features**: Local school competitions and cultural events
-
-### 🌐 **Phase 4: Connected Learning **
-
-#### **Backend Infrastructure**
-- **Node.js/Express API**: Centralized content management
-- **Real-Time Synchronization**: Multi-device data consistency
-- **Cloud Storage**: Backup and recovery for rural connectivity
-- **Administrative Dashboard**: District-level educational insights
-
-#### **Advanced Collaborative Features**
-- **Live Leaderboards**: Real-time competition across schools
-- **Cultural Project Sharing**: Student heritage research collaboration
-- **Teacher Professional Network**: Best practices sharing platform
-- **Parent Portal**: Progress monitoring with cultural context
-
-### 🎯 **Phase 5: Ecosystem Expansion **
-
-#### **Regional Integration**
-- **State Education Board Integration**: Official curriculum alignment
-- **Government Partnership**: Rural school deployment program
-- **Teacher Training Platform**: Cultural integration methodology
-- **Community Engagement**: Local heritage expert involvement
-
-#### **Advanced Technology Integration**
-- **Blockchain Certificates**: Secure academic credential verification
-- **IoT Classroom Integration**: Smart classroom cultural ambiance
-- **5G Optimization**: Enhanced rural connectivity utilization
-- **Edge Computing**: Local processing for improved performance
-
-### 🌱 **Sustainability & Impact Goals**
-
-#### **Educational Impact Targets**
-- **25% Increase** in learning engagement by 2025
-- **50% Improvement** in cultural knowledge retention
-- **90% Student Satisfaction** with culturally-integrated learning
-- **100+ Rural Schools** actively using the platform
-
-#### **Cultural Preservation Goals**
-- **Digital Heritage Archive**: Comprehensive Odia cultural database
-- **Language Revitalization**: Increased Odia language usage in education
-- **Traditional Knowledge Integration**: Indigenous wisdom in modern curriculum
-- **Community Cultural Engagement**: Family involvement in heritage learning
-
----
-
-## 🛠️ Development
->>>>>>> ba5fbe51b7126c9378e6d1727742ada9e52826b6
-
-=======
-### Badge System
-- Knowledge Seeker, Quiz Master, Streak Champion
-- Subject-specific achievements
-- Collaboration and improvement rewards
-
-## 📱 Responsive Design
-
-Optimized for various devices:
-- **Desktop**: Full-featured dashboard view
-- **Tablets**: Responsive grid layouts
-- **Mobile**: Touch-friendly interface
-- **Low-end Devices**: Optimized performance and minimal resource usage
-
-## 🔮 Future Roadmap
-
-### 🎆 **Phase 2: AI Integration **
-
-#### **Intelligent Content Generation**
-- **AI Quiz Creation**: 
-  - Groq AI integration for automatic question generation
-  - Cultural context preservation in AI-generated content
-  - Multilingual quiz creation with Odia cultural examples
-  - Adaptive difficulty based on student performance
-
-- **Smart Translation System**:
-  - AI-powered English to Hindi/Odia translation
-  - Cultural context preservation in translations
-  - Traditional terminology integration
-  - Regional dialect adaptation
-
-#### **Advanced Analytics**
-- **ML-Based Learning Insights**: Predictive analytics for student performance
-- **Cultural Engagement Prediction**: AI analysis of heritage content interaction
-- **Personalized Learning Paths**: Adaptive content delivery based on cultural preferences
-- **Intelligent Intervention**: Early identification of struggling students
-
-### 📱 **Phase 3: Mobile Platform **
-
-#### **React Native Application**
-- **Native Android App**: Optimized for rural device performance
-- **Offline-First Mobile**: Enhanced IndexedDB with native storage
-- **Cultural Notifications**: Festival reminders and learning encouragement
-- **Parent Integration**: Family engagement through cultural achievements
-
-#### **Enhanced Mobile Features**
-- **Voice Input**: Odia speech recognition for quiz answers
-- **Augmented Reality**: Cultural site exploration through AR
-- **Offline Maps**: Heritage site locations and educational content
-- **Community Features**: Local school competitions and cultural events
-
-### 🌐 **Phase 4: Connected Learning **
-
-#### **Backend Infrastructure**
-- **Node.js/Express API**: Centralized content management
-- **Real-Time Synchronization**: Multi-device data consistency
-- **Cloud Storage**: Backup and recovery for rural connectivity
-- **Administrative Dashboard**: District-level educational insights
-
-#### **Advanced Collaborative Features**
-- **Live Leaderboards**: Real-time competition across schools
-- **Cultural Project Sharing**: Student heritage research collaboration
-- **Teacher Professional Network**: Best practices sharing platform
-- **Parent Portal**: Progress monitoring with cultural context
-
-### 🎯 **Phase 5: Ecosystem Expansion **
-
-#### **Regional Integration**
-- **State Education Board Integration**: Official curriculum alignment
-- **Government Partnership**: Rural school deployment program
-- **Teacher Training Platform**: Cultural integration methodology
-- **Community Engagement**: Local heritage expert involvement
-
-#### **Advanced Technology Integration**
-- **Blockchain Certificates**: Secure academic credential verification
-- **IoT Classroom Integration**: Smart classroom cultural ambiance
-- **5G Optimization**: Enhanced rural connectivity utilization
-- **Edge Computing**: Local processing for improved performance
-
-### 🌱 **Sustainability & Impact Goals**
-
-#### **Educational Impact Targets**
-- **25% Increase** in learning engagement by 2025
-- **50% Improvement** in cultural knowledge retention
-- **90% Student Satisfaction** with culturally-integrated learning
-- **100+ Rural Schools** actively using the platform
-
-#### **Cultural Preservation Goals**
-- **Digital Heritage Archive**: Comprehensive Odia cultural database
-- **Language Revitalization**: Increased Odia language usage in education
-- **Traditional Knowledge Integration**: Indigenous wisdom in modern curriculum
-- **Community Cultural Engagement**: Family involvement in heritage learning
-
----
-
-## 🛠️ Development
->>>>>>> ba5fbe51b7126c9378e6d1727742ada9e52826b6
-
-### Project Structure
-```
-src/
-├── components/         # Reusable UI components
-├── pages/             # Route components
-├── services/          # Database operations
-├── utils/             # i18n and utilities
-├── data/              # Static cultural data
-└── App.jsx            # Main application
-```
-
-### Build Commands
-```bash
-npm run dev        # Development server
-npm run build      # Production build
-npm run preview    # Preview build
+npm run deploy     # Deploy to GitHub Pages
 ```
 
 ## 🚀 Deployment
@@ -526,6 +229,9 @@ npm run preview    # Preview build
 ```bash
 # Build for production
 npm run build
+
+# Deploy to GitHub Pages
+npm run deploy
 
 # Deploy to Netlify/Vercel
 npx netlify deploy --prod --dir=dist
@@ -565,140 +271,7 @@ This project is developed for educational purposes, specifically for rural schoo
 - ✅ Cultural preservation initiative
 - ✅ Rural school priority access
 
-#### **How to Contribute**
-1. **Cultural Content**: Share Odia heritage stories, facts, and traditions
-2. **Translation Support**: Help improve Hindi and Odia translations
-3. **Educational Content**: Contribute CBSE-aligned learning materials
-4. **Testing & Feedback**: Test on various devices and provide user experience feedback
-5. **Technical Development**: Code contributions following project standards
-
-#### **Recognition System**
-- **Cultural Contributors**: Special acknowledgment for heritage content providers
-- **Technical Contributors**: Code contribution recognition
-- **Educational Advisors**: Teacher and educator input acknowledgment
-- **Community Validators**: Local expert review and validation recognition
-
-### 🏆 **Project Acknowledgments**
-
-#### **Cultural Inspiration Sources**
-- **Konark Sun Temple**: Architectural inspiration for loader and design elements
-- **Pattachitra Artists**: Traditional scroll painting motifs and patterns
-- **Sambalpuri Weavers**: Textile design patterns and color schemes
-- **Jagannath Temple**: Sacred color palette and spiritual design elements
-- **Odia Literature**: Traditional stories and educational contexts
-
-#### **Technical Acknowledgments**
-- **React.js Community**: For robust component architecture
-- **TailwindCSS Team**: For utility-first styling approach
-- **Recharts Developers**: For beautiful data visualization
-- **react-i18next Team**: For multilingual support framework
-- **IndexedDB Standards**: For offline-first data persistence
-
-#### **Educational Framework**
-- **CBSE Curriculum**: For structured educational content alignment
-- **Odisha Education Board**: For regional curriculum integration
-- **Rural Education Experts**: For understanding ground-level challenges
-- **Teacher Community**: For practical feedback and feature requests
-
-### 📜 **License & Usage**
-
-#### **Smart India Hackathon 2024**
-This project is developed for SIH 2024, focusing on:
-- **Problem Statement**: Improving rural education through technology
-- **Innovation Focus**: Cultural integration in digital learning
-- **Impact Goal**: 15%+ increase in learning engagement
-- **Target Beneficiaries**: Rural schools in Odisha, India
-
-#### **Open Source Commitment**
-- **Educational Use**: Free for all educational institutions
-- **Rural Priority**: Special support for rural and government schools
-- **Cultural Preservation**: Contribution to Odia heritage digitization
-- **Community Benefit**: Platform serves broader social good
-
----
-
-<div align="center">
-  
-  ### 🏛️ **"Transforming Education with Culture and Technology"** 📚✨
-  
-  **Connecting Rural Odisha Students with Their Heritage Through Digital Learning**
-  
-  *Built with pride for Odisha's educational future*
-  
-  [![Odisha](https://img.shields.io/badge/Made%20for-Odisha%20Schools-orange?style=for-the-badge&logo=heart)]()
-  [![Cultural](https://img.shields.io/badge/Culturally-Integrated-red?style=for-the-badge&logo=star)]()
-```
->>>>>>> ba5fbe51b7126c9378e6d1727742ada9e52826b6
 **Smart India Hackathon 2024** - Transforming rural education through culturally-integrated technology.
-
----
-
-<div align="center">
-  
-  ### 🏛️ **"Transforming Education with Culture and Technology"** 📚✨
-  
-  **Connecting Rural Odisha Students with Their Heritage Through Digital Learning**
-  
-  *Built with ❤️ for Odisha's educational future*
-  
-  [![Made for Odisha](https://img.shields.io/badge/Made%20for-Odisha%20Schools-orange?style=for-the-badge)]() 
-  [![Culturally Integrated](https://img.shields.io/badge/Culturally-Integrated-red?style=for-the-badge)]() 
-  [![Offline First](https://img.shields.io/badge/Offline-First-green?style=for-the-badge)]()
-  
-  **Star ⭐ this repository if it helped your educational journey!**
-  
-</div>
-=======
-#### **How to Contribute**
-1. **Cultural Content**: Share Odia heritage stories, facts, and traditions
-2. **Translation Support**: Help improve Hindi and Odia translations
-3. **Educational Content**: Contribute CBSE-aligned learning materials
-4. **Testing & Feedback**: Test on various devices and provide user experience feedback
-5. **Technical Development**: Code contributions following project standards
-
-#### **Recognition System**
-- **Cultural Contributors**: Special acknowledgment for heritage content providers
-- **Technical Contributors**: Code contribution recognition
-- **Educational Advisors**: Teacher and educator input acknowledgment
-- **Community Validators**: Local expert review and validation recognition
-
-### 🏆 **Project Acknowledgments**
-
-#### **Cultural Inspiration Sources**
-- **Konark Sun Temple**: Architectural inspiration for loader and design elements
-- **Pattachitra Artists**: Traditional scroll painting motifs and patterns
-- **Sambalpuri Weavers**: Textile design patterns and color schemes
-- **Jagannath Temple**: Sacred color palette and spiritual design elements
-- **Odia Literature**: Traditional stories and educational contexts
-
-#### **Technical Acknowledgments**
-- **React.js Community**: For robust component architecture
-- **TailwindCSS Team**: For utility-first styling approach
-- **Recharts Developers**: For beautiful data visualization
-- **react-i18next Team**: For multilingual support framework
-- **IndexedDB Standards**: For offline-first data persistence
-
-#### **Educational Framework**
-- **SCERT Curriculum**: For structured educational content alignment
-- **Odisha Education Board**: For regional curriculum integration
-- **Rural Education Experts**: For understanding ground-level challenges
-- **Teacher Community**: For practical feedback and feature requests
-
-### 📜 **License & Usage**
-
-#### **Smart India Hackathon 2024**
-This project is developed for SIH 2025, focusing on:
-- **Problem Statement**: Improving rural education through technology
-- **Innovation Focus**: Cultural integration in digital learning
-- **Impact Goal**: 15%+ increase in learning engagement
-- **Target Beneficiaries**: Rural schools in Odisha, India
-
-#### **Open Source Commitment**
-- **Educational Use**: Free for all educational institutions
-- **Rural Priority**: Special support for rural and government schools
-- **Cultural Preservation**: Contribution to Odia heritage digitization
-- **Community Benefit**: Platform serves broader social good
->>>>>>> ba5fbe51b7126c9378e6d1727742ada9e52826b6
 
 ---
 
