@@ -30,7 +30,8 @@ const AdminDashboard = ({ user, onLogout }) => {
       setTeachers(teachersData);
       setStudents(studentsData);
     } catch (error) {
-      console.error('Error loading data:', error);
+      // Handle database loading error silently
+      // App continues to work with default data
     } finally {
       setLoading(false);
     }
@@ -249,7 +250,8 @@ const TeachersTab = ({ teachers, onRefresh, showAdd, setShowAdd }) => {
         await teacherService.deleteTeacher(teacherId);
         onRefresh();
       } catch (error) {
-        console.error('Error deleting teacher:', error);
+        // Handle teacher deletion error
+        setError('Failed to delete teacher. Please try again.');
       }
     }
   };
@@ -341,7 +343,8 @@ const AddTeacherForm = ({ onSuccess }) => {
       });
       onSuccess();
     } catch (error) {
-      console.error('Error creating teacher:', error);
+      // Handle teacher creation error
+      setError('Failed to create teacher. Please try again.');
     }
   };
 
@@ -414,7 +417,8 @@ const StudentsTab = ({ students, teachers, onRefresh, showAdd, setShowAdd }) => 
         await studentService.deleteStudent(studentId);
         onRefresh();
       } catch (error) {
-        console.error('Error deleting student:', error);
+        // Handle student deletion error
+        setError('Failed to delete student. Please try again.');
       }
     }
   };
@@ -519,7 +523,8 @@ const AddStudentForm = ({ teachers, onSuccess }) => {
       });
       onSuccess();
     } catch (error) {
-      console.error('Error creating student:', error);
+      // Handle student creation error
+      setError('Failed to create student. Please try again.');
     }
   };
 

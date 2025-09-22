@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Eye, EyeOff, Mail, Lock } from 'lucide-react';
 import KonarkWheel from '../components/KonarkWheel';
+import Logo from '../components/Logo';
 import { adminService } from '../services/indexedDB';
 
 const AdminLogin = ({ onLogin }) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -29,19 +31,19 @@ const AdminLogin = ({ onLogin }) => {
     setError('');
 
     try {
-      console.log('Attempting admin login with:', formData.email);
       const admin = await adminService.validateAdmin(formData.email, formData.password);
-      console.log('Admin login result:', admin);
       
       if (admin) {
-        console.log('Login successful, calling onLogin');
-        onLogin(admin);
+        if (onLogin && typeof onLogin === 'function') {
+          onLogin(admin);
+          navigate('/admin/dashboard', { replace: true });
+        } else {
+          setError('Login callback error. Please refresh and try again.');
+        }
       } else {
-        console.log('Login failed - invalid credentials');
         setError('Invalid email or password');
       }
     } catch (error) {
-      console.error('Login error:', error);
       setError('Login failed. Please try again.');
     } finally {
       setIsLoading(false);
@@ -53,7 +55,7 @@ const AdminLogin = ({ onLogin }) => {
       <div className="max-w-md w-full">
         {/* Cultural Header */}
         <div className="text-center mb-8">
-          <KonarkWheel size={100} className="mx-auto mb-6" />
+          <Logo size="w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40" className="mx-auto mb-4" />
           <h1 className="text-3xl font-bold text-gray-800 mb-2 odia-text">
             👑 {t('admin_panel')}
           </h1>

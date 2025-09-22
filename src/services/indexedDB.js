@@ -150,8 +150,12 @@ export class AdminService extends DatabaseService {
   }
 
   async getAdminByEmail(email) {
+    console.log('🔍 Searching for admin with email:', email);
     const admins = await this.getByIndex(STORES.admins, 'email', email);
-    return admins[0] || null;
+    console.log('📊 Found admins:', admins);
+    const admin = admins[0] || null;
+    console.log('✅ Returning admin:', admin);
+    return admin;
   }
 
   async validateAdmin(email, password) {
@@ -161,7 +165,7 @@ export class AdminService extends DatabaseService {
       console.log('Found admin:', admin);
       if (admin && admin.password === password) {
         console.log('Admin validation successful');
-        return admin;
+        return { ...admin, id: admin.id }; // Ensure admin object includes id
       } else {
         console.log('Admin validation failed - wrong password or admin not found');
         return null;
@@ -183,8 +187,12 @@ export class TeacherService extends DatabaseService {
   }
 
   async getTeacherByEmail(email) {
+    console.log('🔍 Searching for teacher with email:', email);
     const teachers = await this.getByIndex(STORES.teachers, 'email', email);
-    return teachers[0] || null;
+    console.log('📊 Found teachers:', teachers);
+    const teacher = teachers[0] || null;
+    console.log('✅ Returning teacher:', teacher);
+    return teacher;
   }
 
   async updateTeacher(id, data) {
@@ -202,7 +210,7 @@ export class TeacherService extends DatabaseService {
       console.log('Found teacher:', teacher);
       if (teacher && teacher.password === password) {
         console.log('Teacher validation successful');
-        return teacher;
+        return { ...teacher, id: teacher.id }; // Ensure teacher object includes id
       } else {
         console.log('Teacher validation failed - wrong password or teacher not found');
         return null;

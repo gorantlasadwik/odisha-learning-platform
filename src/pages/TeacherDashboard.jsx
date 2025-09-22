@@ -11,7 +11,8 @@ import {
   TrendingUp,
   Calendar,
   Clock,
-  Eye
+  Eye,
+  ChevronRight
 } from 'lucide-react';
 import CulturalHeader from '../components/CulturalHeader';
 import StudentProfile from '../components/StudentProfile';
@@ -19,6 +20,7 @@ import TeacherProfile from '../components/TeacherProfile';
 import Settings from '../components/Settings';
 import CulturalWidgets, { DailyCulturalFactWidget } from '../components/CulturalWidgets';
 import MobileWebNavigation from '../components/MobileWebNavigation';
+import InteractiveQuizGame from '../components/InteractiveQuizGame';
 import { studentService } from '../services/indexedDB';
 import {
   SubjectScoresChart,
@@ -37,6 +39,7 @@ const TeacherDashboard = ({ user, onLogout }) => {
   const [showStudentProfile, setShowStudentProfile] = useState(false);
   const [showTeacherProfile, setShowTeacherProfile] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
+  const [showQuizGame, setShowQuizGame] = useState(false);
 
   useEffect(() => {
     loadStudents();
@@ -48,7 +51,8 @@ const TeacherDashboard = ({ user, onLogout }) => {
       const studentsData = await studentService.getStudentsByClass(selectedClass);
       setStudents(studentsData);
     } catch (error) {
-      console.error('Error loading students:', error);
+      // Handle student loading error silently
+      // App continues with empty student list
     } finally {
       setLoading(false);
     }
@@ -73,9 +77,9 @@ const TeacherDashboard = ({ user, onLogout }) => {
   };
 
   const handleUpdateTeacherProfile = (updatedData) => {
-    // Here you would typically update the user data in your state management system
-    console.log('Updating teacher profile:', updatedData);
-    // For now, we'll just log it since we don't have a backend
+    // Update teacher profile data
+    // In a real app, this would sync with backend/database
+    setUser({ ...user, ...updatedData });
   };
 
   const handleShowSettings = () => {
@@ -84,6 +88,14 @@ const TeacherDashboard = ({ user, onLogout }) => {
 
   const handleBackFromSettings = () => {
     setShowSettings(false);
+  };
+
+  const handleShowQuizGame = () => {
+    setShowQuizGame(true);
+  };
+
+  const handleBackFromQuizGame = () => {
+    setShowQuizGame(false);
   };
 
   const handleLanguageChange = (langCode) => {
@@ -160,6 +172,14 @@ const TeacherDashboard = ({ user, onLogout }) => {
           onLanguageChange={handleLanguageChange}
         />
       </div>
+    );
+  }
+
+  if (showQuizGame) {
+    return (
+      <InteractiveQuizGame 
+        onBack={handleBackFromQuizGame}
+      />
     );
   }
 
@@ -309,7 +329,7 @@ const TeacherDashboard = ({ user, onLogout }) => {
             {activeTab === 'students' && <StudentsTab students={students} onViewProfile={handleViewProfile} />}
             {activeTab === 'curriculum' && <CurriculumTab selectedClass={selectedClass} />}
             {activeTab === 'analytics' && <AnalyticsTab />}
-            {activeTab === 'quiz' && <QuizTab />}
+            {activeTab === 'quiz' && <QuizTab onStartQuizGame={handleShowQuizGame} />}
             {activeTab === 'leaderboard' && <LeaderboardTab students={students} />}
           </div>
         </div>
@@ -321,7 +341,7 @@ const TeacherDashboard = ({ user, onLogout }) => {
             {activeTab === 'students' && <StudentsTab students={students} onViewProfile={handleViewProfile} />}
             {activeTab === 'curriculum' && <CurriculumTab selectedClass={selectedClass} />}
             {activeTab === 'analytics' && <AnalyticsTab />}
-            {activeTab === 'quiz' && <QuizTab />}
+            {activeTab === 'quiz' && <QuizTab onStartQuizGame={handleShowQuizGame} />}
             {activeTab === 'leaderboard' && <LeaderboardTab students={students} />}
           </div>
         </div>
@@ -363,7 +383,7 @@ const OverviewTab = ({ students }) => {
                   </div>
                   <div>
                     <p className="font-medium text-gray-800">{student.name}</p>
-                    <p className="text-sm text-gray-600">🔥 {student.streaks} day streak</p>
+                    <p className="text-sm text-gray-600">🔥 {student.streaks} {t('day_streak')}</p>
                   </div>
                 </div>
                 <div className="text-right">
@@ -386,18 +406,18 @@ const OverviewTab = ({ students }) => {
               <div key={student.id} className="flex items-center justify-between bg-white/50 rounded-lg p-3">
                 <div>
                   <p className="font-medium text-gray-800">{student.name}</p>
-                  <p className="text-sm text-gray-600">Last active: 2 days ago</p>
+                  <p className="text-sm text-gray-600">{t('last_active')}: 2 {t('days_ago')}</p>
                 </div>
                 <div className="text-right">
                   <p className="font-bold text-orange-600">{student.averageScore}%</p>
                   <button className="text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded mt-1">
-                    Help
+                    {t('help')}
                   </button>
                 </div>
               </div>
             )) : (
               <div className="text-center py-4">
-                <p className="text-gray-500">🎉 All students performing well!</p>
+                <p className="text-gray-500">🎉 {t('all_students_performing_well')}</p>
               </div>
             )}
           </div>
@@ -408,23 +428,23 @@ const OverviewTab = ({ students }) => {
       <div className="bg-white rounded-lg p-6 border border-gray-200">
         <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center">
           <Calendar className="mr-2" size={20} />
-          Recent Activity
+          {t('recent_activity')}
         </h3>
         <div className="space-y-3">
           <div className="flex items-center space-x-3">
             <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-            <span className="text-sm text-gray-600">Aarav completed Mathematics Quiz #3 - Score: 85%</span>
-            <span className="text-xs text-gray-400">2 min ago</span>
+            <span className="text-sm text-gray-600">{t('quiz_completed_by')} Mathematics Quiz #3 - {t('score')}: 85%</span>
+            <span className="text-xs text-gray-400">2 {t('min_ago')}</span>
           </div>
           <div className="flex items-center space-x-3">
             <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-            <span className="text-sm text-gray-600">New quiz assigned: Science Chapter 4</span>
-            <span className="text-xs text-gray-400">1 hour ago</span>
+            <span className="text-sm text-gray-600">{t('new_quiz_assigned')}: Science Chapter 4</span>
+            <span className="text-xs text-gray-400">1 {t('hour_ago')}</span>
           </div>
           <div className="flex items-center space-x-3">
             <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-            <span className="text-sm text-gray-600">Aisha achieved 7-day learning streak! 🎉</span>
-            <span className="text-xs text-gray-400">3 hours ago</span>
+            <span className="text-sm text-gray-600">Aisha {t('achieved_streak')} 🎉</span>
+            <span className="text-xs text-gray-400">3 {t('hours_ago')}</span>
           </div>
         </div>
       </div>
@@ -446,7 +466,7 @@ const StudentsTab = ({ students, onViewProfile }) => {
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-2 sm:space-y-0">
         <h3 className="text-lg font-semibold text-gray-800">{t('my_students')}</h3>
         <div className="text-sm text-gray-600">
-          Total: {students.length} students
+          {t('total_students')}: {students.length} {t('students_count')}
         </div>
       </div>
 
@@ -467,19 +487,19 @@ const StudentsTab = ({ students, onViewProfile }) => {
 
             <div className="space-y-3">
               <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-600">Average Score</span>
+                <span className="text-sm text-gray-600">{t('average_score')}</span>
                 <span className="font-medium text-gray-800">{student.averageScore}%</span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-600">Quizzes Taken</span>
+                <span className="text-sm text-gray-600">{t('quizzes_taken')}</span>
                 <span className="font-medium text-gray-800">{student.totalQuizzes}</span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-600">Badges</span>
+                <span className="text-sm text-gray-600">{t('badges')}</span>
                 <div className="flex space-x-1">
                   {student.badges?.map((badge, index) => (
                     <span key={index} className="text-xs">🏆</span>
-                  )) || <span className="text-xs text-gray-400">None</span>}
+                  )) || <span className="text-xs text-gray-400">{t('none')}</span>}
                 </div>
               </div>
             </div>
@@ -524,7 +544,7 @@ const CurriculumTab = ({ selectedClass }) => {
       <div className="flex justify-between items-center">
         <h3 className="text-lg font-semibold text-gray-800">{t('curriculum')} - {selectedClass}</h3>
         <div className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-medium">
-          📚 CBSE Syllabus
+          📚 {t('scert_syllabus')}
         </div>
       </div>
 
@@ -533,7 +553,7 @@ const CurriculumTab = ({ selectedClass }) => {
           <div key={index} className="bg-white rounded-lg shadow-lg p-6 border border-gray-200">
             <div className="flex justify-between items-center mb-4">
               <h4 className="text-lg font-semibold text-gray-800">{subject.subject}</h4>
-              <div className="text-sm text-gray-600">{subject.progress}% Complete</div>
+              <div className="text-sm text-gray-600">{subject.progress}% {t('complete')}</div>
             </div>
 
             <div className="w-full bg-gray-200 rounded-full h-2 mb-4">
@@ -549,10 +569,10 @@ const CurriculumTab = ({ selectedClass }) => {
                   <span className="text-sm font-medium text-gray-700">{chapter}</span>
                   <div className="flex items-center space-x-2">
                     <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">
-                      ✓ Complete
+                      ✓ {t('complete')}
                     </span>
                     <button className="text-blue-600 hover:text-blue-800 text-xs">
-                      View
+                      {t('view')}
                     </button>
                   </div>
                 </div>
@@ -564,7 +584,7 @@ const CurriculumTab = ({ selectedClass }) => {
 
       {/* Cultural learning note */}
       <div className="bg-gradient-to-r from-orange-100 to-yellow-100 rounded-lg p-6 border-l-4 border-orange-500">
-        <h4 className="font-medium text-orange-800 mb-2">🏛️ Cultural Integration</h4>
+        <h4 className="font-medium text-orange-800 mb-2">🏛️ {t('cultural_integration')}</h4>
         <p className="text-orange-700 text-sm">
           Mathematics concepts are explained using Konark wheel geometry, and Science topics include references to traditional Odisha knowledge systems.
         </p>
@@ -591,30 +611,62 @@ const AnalyticsTab = () => {
   );
 };
 
-// Quiz Tab Component (Placeholder)
-const QuizTab = () => {
+// Quiz Tab Component
+const QuizTab = ({ onStartQuizGame }) => {
   const { t } = useTranslation();
 
   return (
-    <div className="text-center py-12">
-      <div className="mb-6">
-        <span className="text-6xl">📝</span>
+    <div className="space-y-6">
+      <div className="text-center py-8">
+        <div className="text-6xl mb-4">🎯</div>
+        <h3 className="text-2xl font-semibold text-gray-800 mb-4">{t('interactive_quiz_game')}</h3>
+        <p className="text-gray-600 mb-6">
+          Create engaging team-based quiz competitions with live scoring and leaderboards!
+        </p>
       </div>
-      <h3 className="text-xl font-semibold text-gray-800 mb-4">{t('quiz')} Section</h3>
-      <p className="text-gray-600 mb-6">
-        Upload PDFs or create quizzes manually. AI-powered quiz generation coming soon!
-      </p>
-      <div className="space-y-4">
-        <button className="btn-odisha mx-2">
-          📄 Upload PDF
-        </button>
-        <button className="btn-temple mx-2">
-          ✏️ Create Manual Quiz
+
+      {/* Game Features */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-200">
+          <div className="text-3xl mb-3">👥</div>
+          <h4 className="font-semibold text-blue-800 mb-2">{t('team_competition')}</h4>
+          <p className="text-blue-700 text-sm">
+            Set up teams (2-6) with custom names and watch them compete in real-time
+          </p>
+        </div>
+        
+        <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 border border-green-200">
+          <div className="text-3xl mb-3">📚</div>
+          <h4 className="font-semibold text-green-800 mb-2">{t('question_banks')}</h4>
+          <p className="text-green-700 text-sm">
+            Choose from Science, Mathematics, History, and General Knowledge categories
+          </p>
+        </div>
+        
+        <div className="bg-gradient-to-br from-purple-50 to-violet-50 rounded-xl p-6 border border-purple-200">
+          <div className="text-3xl mb-3">🏆</div>
+          <h4 className="font-semibold text-purple-800 mb-2">{t('live_leaderboard')}</h4>
+          <p className="text-purple-700 text-sm">
+            Dynamic scoring with teacher controls and real-time rankings
+          </p>
+        </div>
+      </div>
+
+      {/* Start Button */}
+      <div className="text-center">
+        <button 
+          onClick={onStartQuizGame}
+          className="px-8 py-4 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-xl font-semibold text-lg hover:opacity-90 transition-opacity shadow-lg"
+        >
+          🚀 {t('start_interactive_quiz_game')}
         </button>
       </div>
-      <div className="mt-8 p-4 bg-blue-50 rounded-lg max-w-md mx-auto">
-        <p className="text-sm text-blue-700">
-          🚀 <strong>Coming Soon:</strong> AI will auto-generate quizzes and translate them to Hindi/Odia!
+
+      {/* Cultural Note */}
+      <div className="bg-gradient-to-r from-yellow-100 to-orange-100 rounded-lg p-6 border-l-4 border-orange-500 mt-8">
+        <h4 className="font-medium text-orange-800 mb-2">🏛️ {t('cultural_integration')}</h4>
+        <p className="text-orange-700 text-sm">
+          Quiz questions include elements of Odisha's rich heritage, traditional knowledge, and cultural wisdom alongside academic content.
         </p>
       </div>
     </div>
@@ -634,11 +686,11 @@ const LeaderboardTab = ({ students }) => {
       <div className="text-center py-8">
         <span className="text-6xl">🏆</span>
         <h3 className="text-xl font-semibold text-gray-800 mt-4 mb-2">{t('leaderboard')}</h3>
-        <p className="text-gray-600">Cultural design coming soon!</p>
+        <p className="text-gray-600">{t('cultural_design_coming_soon')}</p>
       </div>
 
       <div className="bg-gradient-to-r from-orange-100 to-yellow-100 rounded-lg p-6">
-        <h4 className="font-medium text-orange-800 mb-4">🎯 Current Class Rankings</h4>
+        <h4 className="font-medium text-orange-800 mb-4">🎯 {t('current_class_rankings')}</h4>
         <div className="space-y-3">
           {sortedStudents.slice(0, 10).map((student) => (
             <div key={student.id} className="flex items-center justify-between bg-white/70 rounded-lg p-3">

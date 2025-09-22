@@ -40,6 +40,8 @@ const Settings = ({ onBack, user, onLanguageChange }) => {
     { code: 'or', name: 'ଓଡ଼ିଆ', flag: '🏛️' }
   ];
 
+  const [saveStatus, setSaveStatus] = useState('');
+
   const sections = [
     { id: 'general', label: 'General', icon: SettingsIcon },
     { id: 'appearance', label: 'Appearance', icon: Monitor },
@@ -61,15 +63,84 @@ const Settings = ({ onBack, user, onLanguageChange }) => {
       if (onLanguageChange) onLanguageChange(value);
     }
     if (key === 'theme') {
-      document.documentElement.setAttribute('data-theme', value);
+      applyTheme(value);
+    }
+    if (key === 'fontSize') {
+      applyFontSize(value);
     }
   };
+
+  const applyTheme = (theme) => {
+    const root = document.documentElement;
+    root.setAttribute('data-theme', theme);
+    
+    if (theme === 'dark') {
+      root.classList.add('dark');
+      root.classList.remove('light');
+    } else if (theme === 'light') {
+      root.classList.add('light');
+      root.classList.remove('dark');
+    } else { // auto
+      const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (isDark) {
+        root.classList.add('dark');
+        root.classList.remove('light');
+      } else {
+        root.classList.add('light');
+        root.classList.remove('dark');
+      }
+      
+      // Listen for system theme changes
+      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      const handleThemeChange = (e) => {
+        if (settings.theme === 'auto') {
+          if (e.matches) {
+            root.classList.add('dark');
+            root.classList.remove('light');
+          } else {
+            root.classList.add('light');
+            root.classList.remove('dark');
+          }
+        }
+      };
+      mediaQuery.addEventListener('change', handleThemeChange);
+      
+      // Cleanup function
+      return () => mediaQuery.removeEventListener('change', handleThemeChange);
+    }
+  };
+
+  const applyFontSize = (fontSize) => {
+    const root = document.documentElement;
+    root.setAttribute('data-font-size', fontSize);
+    
+    // Apply font size classes
+    const fontSizeClasses = ['font-size-small', 'font-size-medium', 'font-size-large', 'font-size-extra-large'];
+    fontSizeClasses.forEach(cls => root.classList.remove(cls));
+    root.classList.add(`font-size-${fontSize}`);
+    
+    // Also apply CSS custom properties for immediate effect
+    const fontSizeMap = {
+      'small': '14px',
+      'medium': '16px', 
+      'large': '18px',
+      'extra-large': '20px'
+    };
+    root.style.setProperty('--app-font-size', fontSizeMap[fontSize]);
+  };
+
+  // Apply current settings on component mount
+  React.useEffect(() => {
+    applyTheme(settings.theme);
+    applyFontSize(settings.fontSize);
+  }, []);
 
   const handleSaveSettings = () => {
     // All settings are saved automatically, but we can show a confirmation
     const event = new CustomEvent('settingsSaved', { detail: settings });
     window.dispatchEvent(event);
-    alert('Settings saved successfully!');
+    setSaveStatus(`Settings saved successfully! Theme: ${settings.theme}, Font Size: ${settings.fontSize}`);
+    setTimeout(() => setSaveStatus(''), 4000);
   };
 
   const handleExportData = () => {
@@ -89,7 +160,7 @@ const Settings = ({ onBack, user, onLanguageChange }) => {
   };
 
   const handleClearCache = () => {
-    if (confirm('Are you sure you want to clear all cached data? This cannot be undone.')) {
+    if (window.confirm('Are you sure you want to clear all cached data? This cannot be undone.')) {
       localStorage.clear();
       sessionStorage.clear();
       if ('caches' in window) {
@@ -97,7 +168,8 @@ const Settings = ({ onBack, user, onLanguageChange }) => {
           names.forEach(name => caches.delete(name));
         });
       }
-      alert('Cache cleared successfully! Please refresh the page.');
+      setSaveStatus('Cache cleared successfully! Please refresh the page.');
+      setTimeout(() => setSaveStatus(''), 5000);
     }
   };
 
@@ -127,6 +199,13 @@ const Settings = ({ onBack, user, onLanguageChange }) => {
             <span>{t('save')}</span>
           </button>
         </div>
+
+        {/* Status Message */}
+        {saveStatus && (
+          <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+            <p className="text-green-800 text-sm">{saveStatus}</p>
+          </div>
+        )}
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
           {/* Sidebar */}
@@ -306,13 +385,22 @@ const AppearanceSettings = ({ settings, onSettingChange, t }) => (
       <select
         value={settings.fontSize}
         onChange={(e) => onSettingChange('fontSize', e.target.value)}
-        className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+        className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-orange-500 focus:border-transparent mb-3"
       >
         <option value="small">Small</option>
         <option value="medium">Medium</option>
         <option value="large">Large</option>
         <option value="extra-large">Extra Large</option>
       </select>
+      
+      {/* Font Size Preview */}
+      <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+        <p className="text-xs text-gray-500 mb-2">Preview:</p>
+        <div className={`font-size-${settings.fontSize}`}>
+          <h4 className="font-medium mb-1">Sample Heading</h4>
+          <p className="text-sm">This is how text will appear with your selected font size. The quick brown fox jumps over the lazy dog.</p>
+        </div>
+      </div>
     </div>
   </div>
 );

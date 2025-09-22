@@ -1,21 +1,22 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Eye, EyeOff, Mail, Lock } from 'lucide-react';
 import KonarkWheel from '../components/KonarkWheel';
+import Logo from '../components/Logo';
 import { teacherService } from '../services/indexedDB';
 import { initializeApp } from '../services/indexedDB';
 
 const TeacherLogin = ({ onLogin }) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    email: '',
-    password: ''
+    email: 'priya@school.edu',
+    password: 'teacher123'
   });
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
-  const [isInitializing, setIsInitializing] = useState(false);
 
   const handleInputChange = (e) => {
     setFormData({
@@ -27,45 +28,48 @@ const TeacherLogin = ({ onLogin }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
     setIsLoading(true);
     setError('');
 
     try {
-      console.log('Attempting login with:', { email: formData.email, password: formData.password });
+      // Simple validation first
+      if (!formData.email || !formData.password) {
+        setError('Please enter both email and password');
+        setIsLoading(false);
+        return;
+      }
+      
+      // Ensure database is initialized
+      await teacherService.init();
       
       // Check if database is initialized first
       const allTeachers = await teacherService.getAllTeachers();
-      console.log('All teachers in database:', allTeachers);
+      
+      if (allTeachers.length === 0) {
+        await initializeApp();
+        // Check again after initialization
+        const newTeachers = await teacherService.getAllTeachers();
+      }
       
       const teacher = await teacherService.validateTeacher(formData.email, formData.password);
       
       if (teacher) {
-        console.log('Login successful for teacher:', teacher);
-        onLogin(teacher);
+        // Navigate to dashboard
+        navigate('/teacher/dashboard', { replace: true });
+        
+        if (onLogin && typeof onLogin === 'function') {
+          onLogin(teacher);
+        } else {
+          setError('Login callback error. Navigation attempted directly.');
+        }
       } else {
-        console.log('Login failed - teacher not found or wrong password');
-        setError('Invalid email or password. Try the demo credentials: priya@school.edu / teacher123');
+        setError('Invalid email or password');
       }
     } catch (error) {
-      console.error('Login error:', error);
-      setError('Login failed. Please try again. If this persists, the database may not be initialized.');
+      setError('Login failed: ' + error.message);
     } finally {
       setIsLoading(false);
-    }
-  };
-
-  const handleReinitializeDB = async () => {
-    setIsInitializing(true);
-    setError('');
-    try {
-      console.log('Reinitializing database...');
-      await initializeApp();
-      setError('Database reinitialized successfully! You can now try logging in.');
-    } catch (error) {
-      console.error('Database reinitialization failed:', error);
-      setError('Failed to reinitialize database: ' + error.message);
-    } finally {
-      setIsInitializing(false);
     }
   };
 
@@ -74,7 +78,7 @@ const TeacherLogin = ({ onLogin }) => {
       <div className="w-full max-w-md mx-auto">
         {/* Cultural Header */}
         <div className="text-center mb-6 md:mb-8">
-          <KonarkWheel size={80} className="mx-auto mb-4 md:mb-6 sm:w-24 sm:h-24" />
+          <Logo size="w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40" className="mx-auto mb-4 md:mb-6" />
           <h1 className="text-responsive-title text-gray-800 mb-2 odia-text">
             👩‍🏫 {t('teacher_dashboard')}
           </h1>
@@ -95,7 +99,7 @@ const TeacherLogin = ({ onLogin }) => {
                 name="email"
                 value={formData.email}
                 onChange={handleInputChange}
-                className="input-touch"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
                 placeholder="teacher@school.edu"
                 required
                 autoComplete="email"
@@ -114,7 +118,7 @@ const TeacherLogin = ({ onLogin }) => {
                   name="password"
                   value={formData.password}
                   onChange={handleInputChange}
-                  className="input-touch pr-12"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all pr-12"
                   placeholder="Enter your password"
                   required
                   autoComplete="current-password"
@@ -122,7 +126,7 @@ const TeacherLogin = ({ onLogin }) => {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 p-2 min-h-[44px] min-w-[44px] flex items-center justify-center"
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
                 >
                   {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                 </button>
@@ -143,11 +147,11 @@ const TeacherLogin = ({ onLogin }) => {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full btn-temple btn-mobile disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center mb-3"
+              className="w-full bg-orange-600 text-white py-3 px-4 rounded-lg hover:bg-orange-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center mb-3"
             >
               {isLoading ? (
                 <>
-                  <div className="w-5 h-5 border-2 border-gray-600 border-t-transparent rounded-full animate-spin mr-2"></div>
+                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
                   <span className="text-base">Signing in...</span>
                 </>
               ) : (
@@ -157,34 +161,7 @@ const TeacherLogin = ({ onLogin }) => {
                 </>
               )}
             </button>
-
-            {/* Reinitialize Database Button */}
-            <button
-              type="button"
-              onClick={handleReinitializeDB}
-              disabled={isInitializing}
-              className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center text-sm min-h-[48px]"
-            >
-              {isInitializing ? (
-                <>
-                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
-                  Initializing Database...
-                </>
-              ) : (
-                '🔄 Reinitialize Database'
-              )}
-            </button>
           </form>
-
-          {/* Demo Credentials */}
-          <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-            <p className="text-sm text-blue-800 font-medium mb-2">📱 Demo Credentials:</p>
-            <div className="space-y-1">
-              <p className="text-xs md:text-sm text-blue-700">📧 Email: priya@school.edu</p>
-              <p className="text-xs md:text-sm text-blue-700">🔑 Password: teacher123</p>
-              <p className="text-xs md:text-sm text-blue-600 mt-2">✨ Or try: ravi@school.edu, sunita@school.edu</p>
-            </div>
-          </div>
 
           {/* Cultural Footer */}
           <div className="mt-6 text-center">

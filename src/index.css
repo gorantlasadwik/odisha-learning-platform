@@ -9,15 +9,157 @@
 @layer base {
   html {
     font-family: 'Inter', system-ui, sans-serif;
+    font-size: var(--app-font-size, 16px);
+    transition: font-size 0.3s ease;
   }
   
   body {
     /* Smooth scrolling */
     scroll-behavior: smooth;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
   
   .odia-text {
     font-family: 'Noto Sans Oriya', sans-serif;
+  }
+
+  /* Font Size Classes */
+  .font-size-small {
+    --app-font-size: 14px;
+    --app-heading-scale: 0.85;
+  }
+
+  .font-size-medium {
+    --app-font-size: 16px;
+    --app-heading-scale: 1;
+  }
+
+  .font-size-large {
+    --app-font-size: 18px;
+    --app-heading-scale: 1.15;
+  }
+
+  .font-size-extra-large {
+    --app-font-size: 20px;
+    --app-heading-scale: 1.3;
+  }
+
+  /* Apply font sizes to common elements */
+  .font-size-small p, .font-size-small span, .font-size-small div, .font-size-small label, .font-size-small button {
+    font-size: 14px;
+  }
+  .font-size-small h1 { font-size: calc(2rem * 0.85); }
+  .font-size-small h2 { font-size: calc(1.5rem * 0.85); }
+  .font-size-small h3 { font-size: calc(1.25rem * 0.85); }
+  .font-size-small h4 { font-size: calc(1.125rem * 0.85); }
+
+  .font-size-medium p, .font-size-medium span, .font-size-medium div, .font-size-medium label, .font-size-medium button {
+    font-size: 16px;
+  }
+  .font-size-medium h1 { font-size: 2rem; }
+  .font-size-medium h2 { font-size: 1.5rem; }
+  .font-size-medium h3 { font-size: 1.25rem; }
+  .font-size-medium h4 { font-size: 1.125rem; }
+
+  .font-size-large p, .font-size-large span, .font-size-large div, .font-size-large label, .font-size-large button {
+    font-size: 18px;
+  }
+  .font-size-large h1 { font-size: calc(2rem * 1.15); }
+  .font-size-large h2 { font-size: calc(1.5rem * 1.15); }
+  .font-size-large h3 { font-size: calc(1.25rem * 1.15); }
+  .font-size-large h4 { font-size: calc(1.125rem * 1.15); }
+
+  .font-size-extra-large p, .font-size-extra-large span, .font-size-extra-large div, .font-size-extra-large label, .font-size-extra-large button {
+    font-size: 20px;
+  }
+  .font-size-extra-large h1 { font-size: calc(2rem * 1.3); }
+  .font-size-extra-large h2 { font-size: calc(1.5rem * 1.3); }
+  .font-size-extra-large h3 { font-size: calc(1.25rem * 1.3); }
+  .font-size-extra-large h4 { font-size: calc(1.125rem * 1.3); }
+
+  /* Dark theme styles */
+  .dark {
+    --bg-primary: #1f2937;
+    --bg-secondary: #374151;
+    --bg-tertiary: #4b5563;
+    --text-primary: #f9fafb;
+    --text-secondary: #d1d5db;
+    --text-muted: #9ca3af;
+    --border-color: #4b5563;
+    --accent-color: #f59e0b;
+  }
+
+  .dark body {
+    background: linear-gradient(to bottom right, var(--bg-primary), var(--bg-secondary)) !important;
+    color: var(--text-primary);
+  }
+
+  .dark .bg-white {
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-primary);
+  }
+
+  .dark .bg-gradient-to-br {
+    background: linear-gradient(to bottom right, var(--bg-primary), var(--bg-secondary)) !important;
+  }
+
+  .dark .text-gray-800 {
+    color: var(--text-primary) !important;
+  }
+
+  .dark .text-gray-600 {
+    color: var(--text-secondary) !important;
+  }
+
+  .dark .text-gray-500 {
+    color: var(--text-muted) !important;
+  }
+
+  .dark .border-gray-200,
+  .dark .border-gray-300 {
+    border-color: var(--border-color) !important;
+  }
+
+  .dark .shadow-lg {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2) !important;
+  }
+
+  .dark .card-responsive {
+    background-color: var(--bg-secondary) !important;
+    border-color: var(--border-color) !important;
+  }
+
+  .dark input, .dark select, .dark textarea {
+    background-color: var(--bg-tertiary) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-primary) !important;
+  }
+
+  .dark input:focus, .dark select:focus, .dark textarea:focus {
+    border-color: var(--accent-color) !important;
+    box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.2) !important;
+  }
+
+  /* Font size preview styles (isolated) */
+  .font-size-small h4 { font-size: calc(1.125rem * 0.85) !important; }
+  .font-size-small p { font-size: 14px !important; }
+  
+  .font-size-medium h4 { font-size: 1.125rem !important; }
+  .font-size-medium p { font-size: 16px !important; }
+  
+  .font-size-large h4 { font-size: calc(1.125rem * 1.15) !important; }
+  .font-size-large p { font-size: 18px !important; }
+  
+  .font-size-extra-large h4 { font-size: calc(1.125rem * 1.3) !important; }
+  .font-size-extra-large p { font-size: 20px !important; }
+
+  /* Light theme styles (default) */
+  .light {
+    --bg-primary: #fef7f0;
+    --bg-secondary: #fbbf24;
+    --text-primary: #1f2937;
+    --text-secondary: #6b7280;
+    --border-color: #e5e7eb;
   }
 }
 
@@ -136,5 +278,45 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(to bottom, #B91C1C, #F59E0B);
+}
+
+/* Animation keyframes */
+@keyframes konark-wheel {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(180deg); }
+}
+
+@keyframes badge-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
