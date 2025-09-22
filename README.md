@@ -271,7 +271,7 @@ This project is developed for educational purposes, specifically for rural schoo
 - ✅ Cultural preservation initiative
 - ✅ Rural school priority access
 
-**Smart India Hackathon 2024** - Transforming rural education through culturally-integrated technology.
+**Smart India Hackathon 2025** - Transforming rural education through culturally-integrated technology.
 
 ---
 
