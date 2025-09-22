@@ -1,0 +1,28 @@
+{
+  "name": "ShikshaMitra - Odisha Learning Platform",
+  "short_name": "ShikshaMitra",
+  "description": "Culturally-integrated offline-first learning platform for rural schools in Odisha",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#CC0000",
+  "background_color": "#FFD700",
+  "categories": ["education", "learning", "cultural"],
+  "lang": "en-IN",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/logo-english.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logo-odia.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "prefer_related_applications": false
+}
